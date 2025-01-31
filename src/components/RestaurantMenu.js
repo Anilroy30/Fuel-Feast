@@ -1,37 +1,37 @@
 import Shimmer from "./shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./restaurantCategory";
 
 const RestaurantMenu = () => {
     const { resId } = useParams();
     const resInfo = useRestaurantMenu(resId);
 
-
     if (resInfo === null) return <Shimmer />;
 
     const { name, cuisines, costForTwoMessage } = resInfo?.cards[2]?.card?.card?.info;
-    const { itemCards } = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
 
-    // console.log(resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
-
-    const categories = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((each) => each?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+    const categories = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+        (each) =>
+            each?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
 
     console.log(categories);
 
     return (
-        <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
-            <h1 className="text-3xl font-bold text-gray-800">{name}</h1>
-            <p className="text-gray-600 mt-2">{cuisines.join(", ")} - {costForTwoMessage}</p>
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+            {/* Restaurant Info - Centered */}
+            <div className="text-center bg-white shadow-lg rounded-lg p-6 w-3/4 max-w-4xl">
+                <h1 className="text-4xl font-bold text-gray-900">{name}</h1>
+                <p className="text-lg text-gray-600 mt-2">{cuisines.join(", ")} - {costForTwoMessage}</p>
+            </div>
 
-            <h2 className="text-2xl font-semibold mt-6">Menu</h2>
-            <ul className="mt-4 space-y-2">
-                {itemCards.map((item) => (
-                    <li key={item.card.info.id} className="flex justify-between border-b py-2">
-                        <span className="text-gray-700">{item.card.info.name}</span>
-                        <span className="font-semibold text-gray-900">Rs. {item.card.info.price / 100 || item.card.info.defaultPrice / 100}</span>
-                    </li>
+            {/* Menu Categories - Centered */}
+            <div className="w-3/4 max-w-4xl mt-6 space-y-6">
+                {categories.map((each) => (
+                    <RestaurantCategory key={each?.card?.card?.categoryId} data={each?.card?.card} />
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };
