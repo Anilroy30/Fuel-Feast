@@ -1,47 +1,42 @@
-import { CDN_URL } from "../utils/constants";
-import React from "react";
+import { CDN_URL } from '../utils/constants';
 
 const ItemList = ({ items }) => {
 
-    console.log(items);
-    return (
-        <div className="space-y-4">
-            {items.map((item) => (
-                <div
-                    key={item.card.info.id}
-                    className="flex items-center justify-between p-6 border rounded-lg bg-white shadow-md hover:shadow-lg transition w-full"
-                >
-                    {/* Left Section - Text */}
-                    <div className="flex-1">
-                        <h2 className="text-xl font-semibold text-gray-800">{item?.card?.info?.name}</h2>
-                        <p className="text-md text-gray-600 mt-1">
-                            ₹{" "}
-                            {item?.card?.info?.price
-                                ? item?.card?.info?.price / 100
-                                : item?.card?.info?.defaultPrice / 100}
-                        </p>
-                        <p className="text-gray-500 text-md mt-2">
-                            {item.card.info.description}
-                        </p>
-                    </div>
-
-                    {/* Right Section - Image + Add Button */}
-                    <div className="flex flex-col items-center">
-                        {item?.card?.info?.imageId && (
-                            <img
-                                src={CDN_URL + item.card.info.imageId}
-                                alt={item.card.info.name}
-                                className="w-32 h-32 object-cover rounded-lg shadow-md mb-2"
-                            />
-                        )}
-                        <button className="px-5 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">
-                            Add +
-                        </button>
-                    </div>
-                </div>
-            ))}
+  return (
+    <div>
+      {items.map((item) => (
+        <div
+          key={item.card.info.id}
+          className="p-2 m-2 border-b-2 text-left flex justify-between"
+        >
+          <div className="w-9/12">
+            <div className="py-2">
+              <span>{item.card.info.name}</span>
+              <span>
+                - ₹
+                {item.card.info.price
+                  ? item.card.info.price / 100
+                  : item.card.info.defaultPrice / 100}
+              </span>
+            </div>
+            <p className="text-xs">{item.card.info.description}</p>
+          </div>
+          <div className="w-3/12 p-4">
+            <div className="absolute">
+              <button className="p-2 ml-6 mt-[70px] rounded-lg bg-black text-white shadow-lg hover:bg-white  hover:text-black transition-all duration-[.3s]">
+                Add +
+              </button>
+            </div>
+            <img
+              src={CDN_URL + item.card.info.imageId}
+              alt={item.card.info.name}
+              className="w-full rounded-md"
+            />
+          </div>
         </div>
-    );
+      ))}
+    </div>
+  );
 };
 
 export default ItemList;
