@@ -1,16 +1,16 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import RestaurantCard from './RestaurantCard';
 import Shimmer from './shimmer';
 import { Link } from 'react-router-dom';
 import { RESTAURANT_URL } from "../utils/constants";
 import useOnlineStatus from '../utils/useOnlineStatus';
+import UserContext from '../utils/UserContext';
 
 const Body = () => {
     const [listOfRestaurants, setListOfRestaurants] = useState([]);
     const [filteredRestaurant, setFilteredRestaurant] = useState([]);
     const [searchText, setSearchText] = useState("");
-
 
     useEffect(() => {
         fetchData();
@@ -31,6 +31,8 @@ const Body = () => {
             <h1 className="text-center text-red-500 mt-10 text-2xl">Looks like you are offline, please check your internet connection..</h1>
         );
     }
+
+    const {loggedInUser, setUserName} = useContext(UserContext);
 
     return listOfRestaurants.length === 0 ? <Shimmer /> : (
         <div className="container mx-auto px-4">
@@ -63,6 +65,12 @@ const Body = () => {
                     }}>
                     Top Rated Restaurants
                 </button>
+            </div>
+
+            <div className="flex justify-center">
+                <label className='text-xl'>UserName:&nbsp;&nbsp; </label>
+                <input className='border border-black p-1' value={loggedInUser}
+                onChange={(e) => setUserName(e.target.value)}/>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">

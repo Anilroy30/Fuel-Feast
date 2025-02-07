@@ -8,11 +8,11 @@ import Shimmer from './Shimmer';
 const RestaurantMenu = () => {
   const { resId } = useParams();
 
-//   const dummy = 'Dummy Data'
+  const dummy = 'Dummy Data'; {/* used this for example to show the prop drilling */}
 
   const resInfo = useRestaurantMenu(resId);
-    console.log(resInfo);
-//   const [showIndex, setShowIndex] = useState(null);
+  
+  const [showIndex, setShowIndex] = useState(null);
 
   if (resInfo === null) return <Shimmer />;
 
@@ -35,8 +35,6 @@ const RestaurantMenu = () => {
         'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory'
     );
 
-  // console.log(categories);
-
   return (
     <div className="text-center">
       <h1 className="font-bold my-6 text-2xl">{name}</h1>
@@ -49,9 +47,9 @@ const RestaurantMenu = () => {
         <RestaurantCategory
           key={category?.card?.card.title}
           data={category?.card?.card}
-        //   showItems={index === showIndex ? true : false}
-        //   setShowIndex={() => setShowIndex(index)}
-        //   dummy={dummy}
+          showItems={index === showIndex ? true : false}
+          setShowIndex={() => setShowIndex(index)}
+          dummy={dummy}
         />
       ))}
     </div>

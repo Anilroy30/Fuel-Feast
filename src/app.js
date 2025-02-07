@@ -7,6 +7,11 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
+import { useState, useEffect } from "react";
+import UserContext from "./utils/UserContext";
+import {Provider} from "react-redux";
+import appStore from "./utils/appStore";
+
 
 const currYear = new Date().getFullYear();
 
@@ -21,14 +26,27 @@ const Footer = () => {
 };
 
 const AppLayout = () => {
+  const [userName, setUserName] = useState();
+
+  useEffect(() => {
+    const data = {
+      name: "Akshay"
+    };
+    setUserName(data.name);
+  }, []);
+
     return (
-        <div className="flex flex-col min-h-screen">
-            <Header />
-            <div className="flex-1">
-                <Outlet />
+        <Provider store={appStore}>
+          <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+            <div className="flex flex-col min-h-screen">
+                <Header />
+                <div className="flex-1">
+                    <Outlet />
+                </div>
+                <Footer />
             </div>
-            <Footer />
-        </div>
+          </UserContext.Provider>
+        </Provider>
     );
 };
 
