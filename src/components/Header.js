@@ -28,7 +28,8 @@ const Header = () => {
                     <li><Link to="/" className="hover:text-blue-500">Home</Link></li>
                     <li><Link to="/about" className="hover:text-blue-500">About</Link></li>
                     <li><Link to="/contact" className="hover:text-blue-500">Contact</Link></li>
-                    <li className="hover:text-blue-500 cursor-pointer">Cart-({cartItems.length} items)</li>
+                    <li><Link to="/cart" className="hover:text-blue-500 cursor-pointer"> Cart-({cartItems.length} items)</Link></li>
+                    
 
                     <button
                         className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"

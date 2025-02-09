@@ -1,0 +1,84 @@
+{
+    "info": {
+        "id": "1010194",
+        "name": "Sai Ram Restaurant",
+        "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/12/17/16f9b684-4653-4e72-ab59-944c2ccfa41c_1010194.jpg",
+        "locality": "RTC",
+        "areaName": "RTC",
+        "costForTwo": "₹250 for two",
+        "cuisines": [
+            "Chinese",
+            "Biryani"
+        ],
+        "parentId": "387710",
+        "avgRatingString": "NEW",
+        "sla": {
+            "deliveryTime": 28,
+            "lastMileTravel": 2.1,
+            "serviceability": "SERVICEABLE",
+            "slaString": "25-30 mins",
+            "lastMileTravelString": "2.1 km",
+            "iconType": "ICON_TYPE_EMPTY"
+        },
+        "availability": {
+            "nextCloseTime": "2024-12-26 22:30:00",
+            "opened": true
+        },
+        "badges": {},
+        "isOpen": true,
+        "type": "F",
+        "badgesV2": {
+            "entityBadges": {
+                "imageBased": {},
+                "textBased": {},
+                "textExtendedBadges": {}
+            }
+        },
+        "aggregatedDiscountInfoV3": {
+            "header": "₹100 OFF",
+            "subHeader": "ABOVE ₹199",
+            "discountTag": "FLAT DEAL"
+        },
+        "loyaltyDiscoverPresentationInfo": {
+            "logoCtx": {
+                "logo": "Swiggy%20One%20Lite/One_lite_vertical_logo.png"
+            },
+            "freedelMessage": "FREE DELIVERY",
+            "badgeType": "BADGE_TYPE_ONE_LITE"
+        },
+        "orderabilityCommunication": {
+            "title": {},
+            "subTitle": {},
+            "message": {},
+            "customIcon": {}
+        },
+        "differentiatedUi": {
+            "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+            "differentiatedUiMediaDetails": {
+                "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+                "lottie": {},
+                "video": {}
+            }
+        },
+        "reviewsSummary": {},
+        "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+        "isNewlyOnboarded": true,
+        "restaurantOfferPresentationInfo": {},
+        "externalRatings": {
+            "aggregatedRating": {
+                "rating": "--"
+            }
+        },
+        "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+    },
+    "analytics": {
+        "context": "seo-data-4a012f3f-8e7b-473c-a4d9-b1134a5a06ee"
+    },
+    "cta": {
+        "link": "https://www.swiggy.com/city/vizianagaram/sai-ram-restaurant-rtc-rest1010194",
+        "text": "RESTAURANT_MENU",
+        "type": "WEBLINK"
+    },
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+}
+

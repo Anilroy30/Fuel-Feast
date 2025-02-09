@@ -11,19 +11,11 @@ import { useState, useEffect } from "react";
 import UserContext from "./utils/UserContext";
 import {Provider} from "react-redux";
 import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
+import Footer from "./components/Footer";
 
 
 const currYear = new Date().getFullYear();
-
-const Footer = () => {
-  return (
-    <footer className="bg-gray-900 text-white text-center p-4 mt-6">
-      <p>
-        Copyright &copy; {currYear}, Made with 💗 by <strong>Anil</strong>
-      </p>
-    </footer>
-  );
-};
 
 const AppLayout = () => {
   const [userName, setUserName] = useState();
@@ -58,6 +50,7 @@ const appRouter = createBrowserRouter([
       { path: "/", element: <Body /> },
       { path: "/about", element: <About /> },
       { path: "/contact", element: <Contact /> },
+      {path: "/cart", element: <Cart/>},
       { path: "/restaurant/:resId", element: <RestaurantMenu /> }
     ],
     errorElement: <Error />,

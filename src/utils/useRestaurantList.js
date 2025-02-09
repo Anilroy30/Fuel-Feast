@@ -28,7 +28,7 @@ const useRestaurantList = () => {
             setListOfRestaurants(restaurantData || []);
         } catch (err) {
             setError(err.message);
-            console.error("Error fetching restaurants:", err);
+            // console.error("Error fetching restaurants:", err);
         } finally {
             setIsLoading(false);
         }

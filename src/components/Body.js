@@ -38,7 +38,7 @@ const Body = () => {
         <div className="container mx-auto px-4">
             <div className="flex justify-center items-center my-4">
                 <input 
-                    type="text"
+                    type="text" data-testid = "searchInput"
                     className="w-1/2 p-2 border border-gray-300 rounded-l-lg focus:outline-none"
                     placeholder="Search Food or Restaurant" 
                     value={searchText} 
