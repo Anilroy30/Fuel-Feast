@@ -1,51 +1,30 @@
-import { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
-import burgerImage from "../public/Images/burgerImage.png"
+import React from "react";
 
 const About = () => {
-  const [show, setShow] = useState(false);
   return (
-    <div className="about-container-main">
-      <div className="about-profile-container">
-        {/* used ternary condition to Show my profile and Hide my Profile and using nested routing */}
-        {show ? (
-          <>
-            <Link to={"/about"}>
-              <button
-                className="about-profile-button"
-                onClick={() => setShow(false)}
-              >
-                Hide My Profile
-              </button>
-            </Link>
-            <Outlet />
-          </>
-        ) : (
-          <Link to={"profile"}>
-            <button
-              className="about-profile-button"
-              onClick={() => setShow(true)}
-            >
-              Show My Profile
-            </button>
-          </Link>
-        )}
+    <div className="container mx-auto px-6 py-12 text-center">
+      <h1 className="text-4xl font-bold text-gray-800">
+        About <span className="text-red-500">Fuel & Feast</span>
+      </h1>
+      <p className="mt-4 text-lg text-gray-600">
+        Welcome to <strong>Fuel & Feast</strong>, your go-to platform for discovering the best restaurants and ordering delicious food effortlessly. We aim to fuel your cravings with a feast of amazing flavors!
+      </p>
+
+      <div className="mt-8 flex justify-center">
+        <img 
+          src="https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg" 
+          alt="About Fuel & Feast" 
+          className="rounded-lg shadow-lg w-full max-w-2xl"
+        />
       </div>
-      <div className="about-container">
-        <div className="about-left">
-          <h1>
-            Welcome to <br /> The world of <br />
-            <span>Tasty & Fresh Food</span>
-          </h1>
-          <h4>
-            "Better you will feel if you eat a Food<span>Fire</span> healthy
-            meal"
-          </h4>
-        </div>
-        <div className="about-right">
-          <img src={burgerImage} alt="Food Image" />
-        </div>
-      </div>
+
+      <h2 className="mt-8 text-2xl font-semibold">Why Choose Us?</h2>
+      <ul className="mt-4 text-lg text-gray-600 space-y-2">
+        <li>🍽️ Hand-picked restaurants with top ratings</li>
+        <li>🚀 Fast and seamless ordering experience</li>
+        <li>💳 Secure payments and exclusive discounts</li>
+        <li>📍 Location-based restaurant recommendations</li>
+      </ul>
     </div>
   );
 };
