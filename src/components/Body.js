@@ -43,7 +43,6 @@ const Body = () => {
         }
     };
 
-    // ✅ Now inside the component
     const onlineStatus = useOnlineStatus();
 
     if (!onlineStatus) {
@@ -68,39 +67,41 @@ const Body = () => {
     }, [searchText, listOfRestaurants]);
 
     return (listOfRestaurants.length === 0) ? <Shimmer /> : (
-        <div className="container mx-auto pl-3">
-            <div className="flex justify-between items-center my-4 mx-auto w-full">
+        <div className="container mx-auto px-4">
+            {/* 🔹 Improved Alignment for Search, Button, and Dark Mode Toggle */}
+            <div className="flex flex-wrap items-center justify-between gap-4 mt-6 px-4">
+                
+                {/* Top Rated Restaurants Button */}
                 <button 
-                    className="bg-green-500 text-white px-2 py-2 rounded-lg hover:bg-green-600 transition"
+                    className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
                     onClick={() => {
                         const filteredList = listOfRestaurants.filter((res) => res?.info?.avgRating > 4.2);
                         setFilteredRestaurant(filteredList);
                     }}>
-                    Top Rated Restaurants
+                    ⭐ Top Rated Restaurants
                 </button>
 
-                <div className="ml-60 flex w-7/12">
+                {/* Search Bar */}
+                <div className="flex items-center w-full sm:w-2/4 lg:w-2/4">
                     <input 
                         type="text" data-testid="searchInput"
-                        className="w-full pt-2 p-2 border border-gray-300 rounded-l-lg focus:outline-none"
-                        placeholder="Search a Restaurant you want..." 
+                        className="w-full p-2 border border-gray-300 rounded-l-lg focus:outline-none"
+                        placeholder="🔍 Search a restaurant..." 
                         value={searchText} 
                         onChange={(e) => setSearchText(e.target.value)}
                     />
                     <button 
                         className="bg-blue-500 text-white px-4 py-2 rounded-r-lg hover:bg-red-600 transition"
                         onClick={() => setSearchText("")}> 
-                        Clear
+                        ❌ Clear
                     </button>
                 </div>
 
                 {/* Dark Mode Toggle */}
-                <div className="flex justify-end mt-4">
-                    <DarkModeToggle />
-                </div>
-
+                <DarkModeToggle />
             </div>
 
+            {/* Restaurant Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
                 {filteredRestaurant?.length > 0 ? (
                     filteredRestaurant.map((res) => (
