@@ -17,24 +17,32 @@ const Body = () => {
 
     const fetchData = async () => {
         try {
-            const data = await fetch(RESTAURANT_URL);
-            const json = await data.json();
-            console.log("Fetched JSON Response:", json);
-            console.log("Data Path:", json?.data?.cards);
+            const response = await fetch(RESTAURANT_URL);
+            const json = await response.json();
 
-            const restaurants = json?.data?.cards?.find(
-                (card) => card?.card?.card?.gridElements?.infoWithStyle?.restaurants
-            )?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+            console.log("Fetched JSON:", json);
 
-            console.log("Extracted Restaurants:", restaurants);
-            
-            setListOfRestaurants(restaurants);
-            setFilteredRestaurant(restaurants);
+            // Extract restaurant data
+            const allRestaurants = json?.data?.cards?.flatMap((card) =>
+                card?.card?.card?.gridElements?.infoWithStyle?.restaurants || []
+            ) || [];
+
+            // Remove duplicates based on restaurant ID
+            const uniqueRestaurants = allRestaurants.reduce((acc, curr) => {
+                if (!acc.find((res) => res.info.id === curr.info.id)) {
+                    acc.push(curr);
+                }
+                return acc;
+            }, []);
+
+            setListOfRestaurants(uniqueRestaurants);
+            setFilteredRestaurant(uniqueRestaurants);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
     };
-    
+
+    // ✅ Now inside the component
     const onlineStatus = useOnlineStatus();
 
     if (!onlineStatus) {
@@ -45,7 +53,7 @@ const Body = () => {
         );
     }
 
-    const { loggedInUser, setUserName } = useContext(UserContext);
+    const { loggedInUser } = useContext(UserContext);
 
     useEffect(() => {
         if (searchText.trim() === "") {
@@ -58,7 +66,7 @@ const Body = () => {
         }
     }, [searchText, listOfRestaurants]);
 
-    return listOfRestaurants.length === 0 ? <Shimmer /> : (
+    return (listOfRestaurants.length === 0) ? <Shimmer /> : (
         <div className="container mx-auto px-4">
             <div className="flex justify-between items-center my-4 mx-auto w-10/12">
                 <div className="ml-60 flex w-7/12">
@@ -83,12 +91,6 @@ const Body = () => {
                     }}>
                     Top Rated Restaurants
                 </button>
-            </div>
-
-            <div className="flex justify-center my-4">
-                <label className='text-xl'>UserName:&nbsp;&nbsp; </label>
-                <input className='border border-black p-1' value={loggedInUser}
-                onChange={(e) => setUserName(e.target.value)}/>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
