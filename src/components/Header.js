@@ -51,7 +51,13 @@ const Header = () => {
             {/* Navigation Items */}
             <nav className="flex items-center space-x-6 text-lg font-medium">
                 <p className="flex items-center">Online Status: <span className="ml-1 text-green-500">{onlineStatus ? "✅" : "❌"}</span></p>
-                <Link to="/" className="px-4 py-2 rounded-lg transition bg-transparent hover:bg-blue-500 hover:text-white">Home</Link>
+                <Link 
+                    to="/" 
+                    className="px-4 py-2 rounded-lg transition bg-transparent hover:bg-blue-500 hover:text-white"
+                    onClick={() => setFilteredRestaurant(listOfRestaurants)} // Reset restaurants
+                >
+                    Home
+                </Link>
                 <Link to="/about" className="px-4 py-2 rounded-lg transition bg-transparent hover:bg-blue-500 hover:text-white">About</Link>
                 <Link to="/contact" className="px-4 py-2 rounded-lg transition bg-transparent hover:bg-blue-500 hover:text-white">Contact</Link>
                 <Link to="/cart" className="px-4 py-2 rounded-lg transition bg-transparent hover:bg-yellow-500 hover:text-white flex items-center">🛒 Cart ({cartItems.length})</Link>

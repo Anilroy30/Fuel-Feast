@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import RestaurantCard from './RestaurantCard';
 import Shimmer from './shimmer';
+import DarkModeToggle from './Toggle';  // Import Dark Mode Toggle
 import { Link } from 'react-router-dom';
 import { RESTAURANT_URL } from "../utils/constants";
 import useOnlineStatus from '../utils/useOnlineStatus';
@@ -67,8 +68,17 @@ const Body = () => {
     }, [searchText, listOfRestaurants]);
 
     return (listOfRestaurants.length === 0) ? <Shimmer /> : (
-        <div className="container mx-auto px-4">
-            <div className="flex justify-between items-center my-4 mx-auto w-10/12">
+        <div className="container mx-auto pl-3">
+            <div className="flex justify-between items-center my-4 mx-auto w-full">
+                <button 
+                    className="bg-green-500 text-white px-2 py-2 rounded-lg hover:bg-green-600 transition"
+                    onClick={() => {
+                        const filteredList = listOfRestaurants.filter((res) => res?.info?.avgRating > 4.2);
+                        setFilteredRestaurant(filteredList);
+                    }}>
+                    Top Rated Restaurants
+                </button>
+
                 <div className="ml-60 flex w-7/12">
                     <input 
                         type="text" data-testid="searchInput"
@@ -83,14 +93,12 @@ const Body = () => {
                         Clear
                     </button>
                 </div>
-                <button 
-                    className="bg-green-500 text-white px-2 py-2 rounded-lg hover:bg-green-600 transition"
-                    onClick={() => {
-                        const filteredList = listOfRestaurants.filter((res) => res?.info?.avgRating > 4.2);
-                        setFilteredRestaurant(filteredList);
-                    }}>
-                    Top Rated Restaurants
-                </button>
+
+                {/* Dark Mode Toggle */}
+                <div className="flex justify-end mt-4">
+                    <DarkModeToggle />
+                </div>
+
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
