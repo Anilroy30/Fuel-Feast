@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     }
 
     try {
-        const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.8234&lng=80.0462");
+        const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.823478690983684&lng=80.04620119854998&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const data = await response.json();
         res.status(200).json(data);
     } catch (error) {
