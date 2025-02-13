@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { SiGmail, SiLinkedin, SiGithub, SiX } from "react-icons/si";
+import { ThemeContext } from "../components/ThemeContext";
 import {
   Github_Link,
   Email_Link,
@@ -8,6 +9,7 @@ import {
 } from "../utils/constants";
 
 const Contact = () => {
+  const { theme } = useContext(ThemeContext);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
   const handleChange = (e) => {
@@ -21,15 +23,24 @@ const Contact = () => {
   };
 
   return (
-    <div className="container mx-auto px-6 py-12 text-center">
-      <h1 className="text-4xl font-bold text-gray-800">
+    <div
+      className={`container mx-auto px-6 py-12 text-center ${
+        theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-black"
+      }`}
+    >
+      <h1 className="text-4xl font-bold">
         Contact <span className="text-red-500">Us</span>
       </h1>
-      <p className="mt-4 text-lg text-gray-600">
+      <p className="mt-4 text-lg opacity-80">
         Have questions? We'd love to hear from you! Fill out the form below and we'll be in touch soon.
       </p>
 
-      <form onSubmit={handleSubmit} className="mt-8 max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
+      <form
+        onSubmit={handleSubmit}
+        className={`mt-8 max-w-lg mx-auto p-6 rounded-lg shadow-lg ${
+          theme === "dark" ? "bg-gray-800" : "bg-gray-100"
+        }`}
+      >
         <input
           type="text"
           name="name"
@@ -57,21 +68,24 @@ const Contact = () => {
           rows="4"
           required
         ></textarea>
-        <button type="submit" className="w-full bg-red-500 text-white font-bold py-3 mt-4 rounded-md hover:bg-red-600 transition">
+        <button
+          type="submit"
+          className="w-full bg-red-500 text-white font-bold py-3 mt-4 rounded-md hover:bg-red-600 transition"
+        >
           Send Message
         </button>
       </form>
 
       <div className="mt-10">
-        <h2 className="text-2xl font-semibold text-gray-700">Our Contact Details</h2>
-        <p className="mt-2 text-lg text-gray-600">📍 123 Food Street, Gourmet City</p>
-        <p className="mt-2 text-lg text-gray-600">📞 +1 234 567 890</p>
-        <p className="mt-2 text-lg text-gray-600">📧 anilkumarakula34@gmail.com</p>
+        <h2 className="text-2xl font-semibold">Our Contact Details</h2>
+        <p className="mt-2 text-lg opacity-80">📍 123 Food Street, Gourmet City</p>
+        <p className="mt-2 text-lg opacity-80">📞 +1 234 567 890</p>
+        <p className="mt-2 text-lg opacity-80">📧 anilkumarakula34@gmail.com</p>
       </div>
 
       {/* Social Media Links */}
       <div className="mt-10">
-        <h2 className="text-2xl font-semibold text-gray-700">Connect with Us</h2>
+        <h2 className="text-2xl font-semibold">Connect with Us</h2>
         <div className="mt-4 flex justify-center space-x-6">
           <a
             href={Linkedin_Link}
@@ -94,7 +108,9 @@ const Contact = () => {
           <a
             href={Github_Link}
             title="Follow us on Github"
-            className="text-gray-900 text-3xl hover:text-gray-700 transition"
+            className={`text-3xl transition ${
+              theme === "dark" ? "text-white hover:text-gray-400" : "text-gray-900 hover:text-gray-700"
+            }`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -116,4 +132,3 @@ const Contact = () => {
 };
 
 export default Contact;
-

@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+html {
+  @apply bg-gray-100 text-black; /* Default light mode */
+}
+
+html.dark {
+  @apply bg-gray-900 text-white; /* ✅ Dark mode fix */
+}
+
+
 
 /* General Reset
 *,

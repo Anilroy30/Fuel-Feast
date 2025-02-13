@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import Header from './components/Header';
-import Body from './components/Body';
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+
+import Header from "./components/Header";
+import Body from "./components/Body";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
-import UserContext from "./utils/UserContext";
-import { Provider } from "react-redux";
-import appStore from "./utils/appStore";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
-import { ThemeProvider } from "./utils/ThemeContext"; // ✅ Import Theme Context
+
+import UserContext from "./utils/UserContext";
+import { ThemeProvider } from "./components/ThemeContext"; // ✅ Import ThemeProvider
 
 const AppLayout = () => {
   const [userName, setUserName] = useState("");
@@ -25,9 +27,8 @@ const AppLayout = () => {
   return (
     <Provider store={appStore}>
       <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
-        <ThemeProvider>
-          {/* ✅ Apply dark mode classes here */}
-          <div className="flex flex-col min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white transition-all duration-300">
+        <ThemeProvider> {/* ✅ Wrap everything inside ThemeProvider */}
+          <div className="flex flex-col min-h-screen">
             <Header />
             <div className="flex-1">
               <Outlet />
